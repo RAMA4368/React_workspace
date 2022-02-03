@@ -5,16 +5,34 @@ import GoogleLove from './GoogleLove';
 import ChildComponent from "./components/ChildComponent";
 import StateComponent from './components/StateComponent';
 import ScrollComponent from './components/ScrollComponent';
+import InputComponent from './components/InputComponent';
 
 // 다음은 js 와 html을 함께쓰는 JSX문법
-class App extends Component{
-  
-  //=====================state 개념 ====================================
-  render(){
+class App extends Component {
+  // 하위 컴퍼넌트에서 불러오는 콜백 함수
+  chagneInput(name, value) {
+    console.log(`chagneInput() name : ${name} , value : ${value}`);
+  }
+  render() {
     return (
-      <div>
-        <ScrollComponent />
-      </div>
+    <div>
+      <InputComponent
+      label="아이디 : "
+      name="id"
+      value="아이디를 입력하세요"
+      errorMessage="한글 입력중..."
+      autoFocus={true}
+      />
+    <br />
+      <InputComponent
+      label="비밀번호 : "
+      name="pass"
+      //type="password"
+      value="비밀번호를 입력하세요"
+      errorMessage="한글 입력중..."
+      onChange={this.chagneInput}
+      />
+    </div>
     );
   }
 
